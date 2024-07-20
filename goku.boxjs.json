@@ -17,6 +17,7 @@
             ],
             "keys": [
                 "IS_DEBUG",
+                "WAIT_TIME",
                 "GUMING_WX_USER",
                 "GUMING_ALIPAY_USER",
                 "activityId",
@@ -31,6 +32,13 @@
                     "type": "input",
                     "autoGrow": true,
                     "desc": "调试模式"
+                },
+                {
+                    "id": "WAIT_TIME",
+                    "name": "循环等待时间",
+                    "val": 200,
+                    "type": "number",
+                    "desc": "没抢到时，循环等待时间"
                 },
                 {
                     "id": "GUMING_WX_USER",
