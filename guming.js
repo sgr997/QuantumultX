@@ -43,7 +43,7 @@ if (typeof $request !== 'undefined') {
             $.VAL_GUMING_ALIPAY_USER = { authorization, cookie, tToken, referer, userAgent, 'channelCode': 60, 'brandId': 1 }
             $.setjson($.VAL_GUMING_ALIPAY_USER, $.KEY_GUMING_ALIPAY_USER)
         }
-        $.msg(`添加${channelCode === '20' ? '微信' : '支付宝'}古茗账号成功🎉`, '', `请在Quantumult-X中禁用该脚本\n${channelCode === '20' ? $.VAL_GUMING_WX_USER : $.VAL_GUMING_ALIPAY_USER}`)
+        $.msg(`添加${channelCode === '20' ? '微信' : '支付宝'}古茗账号成功🎉`, '', `请在Quantumult-X中禁用该脚本`)
     } catch (e) {
         $.log('', `❌ ${$.name}, 失败! 原因: ${e}!`, '')
     } finally {
