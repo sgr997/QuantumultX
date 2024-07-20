@@ -96,7 +96,7 @@ function evalUser(user) {
     $.log(`开始执行${user.channelCode == '20' ? '微信' : '支付宝'}古茗账号`)
     let option = {
         url: $.VAL_IS_DEBUG == 'true' ? `https://blogapi.goku.top/test?code=0&msg=success` : `https://h5.gumingnc.com/newton-buyer/newton/buyer/ump/milk/tea/activity/fcfs`,
-        headers: $.VAL_IS_DEBUG == 'true' ? {} : {
+        headers: {
             'Sec-Fetch-Dest': `empty`,
             'Connection': `keep-alive`,
             'Accept-Encoding': `gzip, deflate, br`,
