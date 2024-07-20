@@ -41,7 +41,8 @@ if (typeof $request !== 'undefined') {
     } catch (e) {
         $.log('', `❌ ${$.name}, 失败! 原因: ${e}!`, '')
     } finally {
-        $.msg($.name, $.subt, $.desc), $.log('', `🔔 ${$.name}, 结束!`, ''), $.done()
+        $.log('', `🔔 ${$.name}, 结束!`, '');
+        $.done()
     }
 } else {
     $.GUMING_WX_USER = $.getjson('GUMING_WX_USER')
@@ -75,7 +76,8 @@ if (typeof $request !== 'undefined') {
             $.log('', `❌ ${$.name}, 失败! 原因: ${e}!`, '')
         })
         .finally(() => {
-            $.msg($.name, $.subt, $.desc), $.log('', `🔔 ${$.name}, 结束!`, ''), $.done()
+            $.log('', `🔔 ${$.name}, 结束!`, '');
+            $.done();
         })
 
 }
