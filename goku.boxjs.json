@@ -11,6 +11,7 @@
             "author": "@sgr997",
             "repo": "",
             "icons": [
+                "https://raw.githubusercontent.com/sgr997/QuantumultX/main/icon/avator.png",
                 "https://raw.githubusercontent.com/sgr997/QuantumultX/main/icon/avator.png"
             ],
             "keys": [
@@ -41,7 +42,7 @@
                     "id": "activityId",
                     "name": "activityId",
                     "val": "",
-                    "type": "textarea",
+                    "type": "input",
                     "autoGrow": true,
                     "desc": "活动id"
                 },
@@ -49,7 +50,7 @@
                     "id": "keyWordAnswer",
                     "name": "keyWordAnswer",
                     "val": "",
-                    "type": "textarea",
+                    "type": "input",
                     "autoGrow": true,
                     "desc": "答案"
                 },
@@ -57,7 +58,7 @@
                     "id": "consumptionInventoryId",
                     "name": "consumptionInventoryId",
                     "val": "",
-                    "type": "textarea",
+                    "type": "input",
                     "autoGrow": true,
                     "desc": ""
                 }
