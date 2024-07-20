@@ -37,14 +37,14 @@ if (typeof $request !== 'undefined') {
 
         if (channelCode === '20') {
             // 微信
-            $.VAL_GUMING_WX_USER = { authorization, cookie, tToken, referer, userAgent, 'channelCode': 20, 'brandId': 1 }
+            $.VAL_GUMING_WX_USER = { authorization, cookie, tToken, referer, userAgent, 'channelCode': channelCode, 'brandId': 1 }
             $.setjson($.VAL_GUMING_WX_USER, $.KEY_GUMING_WX_USER)
         } else {
             // 支付宝
-            $.VAL_GUMING_ALIPAY_USER = { authorization, cookie, tToken, referer, userAgent, 'channelCode': 60, 'brandId': 1 }
+            $.VAL_GUMING_ALIPAY_USER = { authorization, cookie, tToken, referer, userAgent, 'channelCode': channelCode, 'brandId': 1 }
             $.setjson($.VAL_GUMING_ALIPAY_USER, $.KEY_GUMING_ALIPAY_USER)
         }
-        $.msg(`添加${channelCode === '20' ? '微信' : '支付宝'}古茗账号成功🎉`, '', `请在Quantumult-X中禁用该脚本`)
+        $.msg(`添加${channelCode == '20' ? '微信' : '支付宝'}古茗账号成功🎉`, '', `请在Quantumult-X中禁用该脚本`)
     } catch (e) {
         $.log('', `❌ ${$.name}, 失败! 原因: ${e}!`, '')
     } finally {
@@ -65,8 +65,8 @@ if (typeof $request !== 'undefined') {
     }
 
     !(async () => {
-        let yesUser = []
-        for (const i = 0; i < 5; i++) {
+        const yesUser = []
+        for (let i = 0; i < 5; i++) {
             if (yesUser.length === 2) {
                 break
             }
@@ -76,7 +76,7 @@ if (typeof $request !== 'undefined') {
             if (yesUser.indexOf($.VAL_GUMING_ALIPAY_USER) === -1 && await evalUser($.VAL_GUMING_ALIPAY_USER)) {
                 yesUser.push($.VAL_GUMING_ALIPAY_USER)
             }
-            await $.wait(200)
+            await $.wait(2000)
         }
 
     })()
@@ -91,10 +91,10 @@ if (typeof $request !== 'undefined') {
 }
 
 function evalUser(user) {
-    $.log(`开始执行${user.channelCode === '20' ? '微信' : '支付宝'}古茗账号`)
+    $.log(`开始执行${user.channelCode == '20' ? '微信' : '支付宝'}古茗账号`)
     let option = {
         url: $.VAL_IS_DEBUG == 'true' ? `https://blogapi.goku.top/test?code=0&msg=success` : `https://h5.gumingnc.com/newton-buyer/newton/buyer/ump/milk/tea/activity/fcfs`,
-        headers: {
+        headers: $.VAL_IS_DEBUG == 'true' ? {} : {
             'Sec-Fetch-Dest': `empty`,
             'Connection': `keep-alive`,
             'Accept-Encoding': `gzip, deflate, br`,
@@ -115,12 +115,11 @@ function evalUser(user) {
         body: `{"channelCode":${user.channelCode},"activityId":${$.VAL_activityId},"brandId":${user.brandId},"keyWordAnswer":"${$.VAL_keyWordAnswer}","consumptionInventoryId":${$.VAL_consumptionInventoryId}`
     }
     return $.http.post(option).then(response => {
-        $.log(`${user.channelCode === '20' ? '微信' : '支付宝'}古茗账号抽奖结果：${JSON.stringify(response.body)}`)
-        let result = response.body
+        let result = JSON.parse(response.body)
         if (result.code == 0) {
-            $.msg(`${user.channelCode === '20' ? '微信' : '支付宝'}古茗账号抢券成功`, '', `${user.channelCode === '20' ? '微信' : '支付宝'}古茗账号抽奖结果：${result.msg}`)
+            $.msg(`${user.channelCode == '20' ? '微信' : '支付宝'}古茗账号抢券成功`, '', `${user.channelCode == '20' ? '微信' : '支付宝'}古茗账号抽奖结果：${result.msg}`)
         } else {
-            $.log(`${user.channelCode === '20' ? '微信' : '支付宝'}古茗账号抽奖结果：${result.msg}`)
+            $.log(`${user.channelCode == '20' ? '微信' : '支付宝'}古茗账号抽奖结果：${result.msg}`)
         }
         return result.code == 0
     })
