@@ -11,6 +11,7 @@ hostname=h5.gumingnc.com
 **/
 const $ = new Env('guming');
 
+$.KEY_IS_DEBUG = 'is_debug'
 $.KEY_GUMING_WX_USER = 'GUMING_WX_USER'
 $.KEY_GUMING_ALIPAY_USER = 'GUMING_ALIPAY_USER'
 $.KEY_activityId = 'activityId'
@@ -51,6 +52,7 @@ if (typeof $request !== 'undefined') {
         $.done()
     }
 } else {
+    $.VAL_IS_DEBUG = $.getdata($.KEY_IS_DEBUG, 'false')
     $.VAL_GUMING_WX_USER = $.getjson($.KEY_GUMING_WX_USER)
     $.VAL_GUMING_ALIPAY_USER = $.getjson($.KEY_GUMING_ALIPAY_USER)
     $.VAL_activityId = $.getdata($.KEY_activityId) || ''
@@ -90,7 +92,7 @@ if (typeof $request !== 'undefined') {
 
 function evalUser(user) {
     let option = {
-        url: `https://h5.gumingnc.com/newton-buyer/newton/buyer/ump/milk/tea/activity/fcfs`,
+        url: $.VAL_IS_DEBUG == 'true' ? `https://blogapi.goku.top/test?code=0&msg=success` : `https://h5.gumingnc.com/newton-buyer/newton/buyer/ump/milk/tea/activity/fcfs`,
         headers: {
             'Sec-Fetch-Dest': `empty`,
             'Connection': `keep-alive`,
