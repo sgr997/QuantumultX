@@ -1,4 +1,3 @@
-/***********************************
  
 [rewrite_local]
 ^https?:\/\/h5\.gumingnc\.com\/newton-buyer\/newton\/buyer\/ump\/milk\/tea\/activity\/index url script-request-body https://raw.githubusercontent.com/sgr997/QuantumultX/main/guming.js
@@ -9,8 +8,6 @@
 [mitm]
 
 hostname=h5.gumingnc.com
-
-***********************************/
 
 
 const $ = new Env('guming');
