@@ -1,6 +1,7 @@
 /** 
 [rewrite_local]
 ^https?:\/\/h5\.gumingnc\.com\/newton-buyer\/newton\/buyer\/ump\/milk\/tea\/activity\/index url script-request-header https://raw.githubusercontent.com/sgr997/QuantumultX/main/guming.js
+^https?:\/\/h5\.gumingnc\.com\/newton-buyer\/newton\/buyer\/ump\/milk\/tea\/activity\/fcfs url script-request-header https://raw.githubusercontent.com/sgr997/QuantumultX/main/guming.js
 
 [task_local]
 1 0 * * * https://raw.githubusercontent.com/sgr997/QuantumultX/main/guming.js
@@ -116,24 +117,7 @@ function evalUser(user) {
     }
     let option = {
         url: $.VAL_IS_DEBUG == 'true' ? `https://blogapi.goku.top/test?code=0&msg=success` : `https://h5.gumingnc.com/newton-buyer/newton/buyer/ump/milk/tea/activity/fcfs`,
-        headers: $.VAL_IS_DEBUG == 'true' ? {} : {
-            'Sec-Fetch-Dest': `empty`,
-            'Connection': `keep-alive`,
-            'Accept-Encoding': `gzip, deflate, br`,
-            'Content-Type': `application/json`,
-            'Sec-Fetch-Site': `same-origin`,
-            'Origin': `https://h5.gumingnc.com`,
-            'Cache-Control': `max-age=0`,
-            'User-Agent': `${user.userAgent}`,
-            'Authorization': `${user.authorization}`,
-            'Sec-Fetch-Mode': `cors`,
-            't-token': `${user.tToken}`,
-            'Host': `h5.gumingnc.com`,
-            'Referer': `${user.referer}`,
-            'Cookie': `${user.cookie}`,
-            'Accept-Language': `zh-CN,zh-Hans;q=0.9`,
-            'Accept': `*/*`
-        },
+        headers: $.VAL_IS_DEBUG == 'true' ? {} : headers,
         body: `{"channelCode":${user.channelCode},"activityId":${$.VAL_activityId},"brandId":${user.brandId},"keyWordAnswer":"${$.VAL_keyWordAnswer}","consumptionInventoryId":${$.VAL_consumptionInventoryId}`
     }
     return $.http.post(option).then(response => {
