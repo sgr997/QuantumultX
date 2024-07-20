@@ -12,6 +12,7 @@ hostname=h5.gumingnc.com
 const $ = new Env('guming');
 
 $.KEY_IS_DEBUG = 'IS_DEBUG'
+$.KEY_WAIT_TIME = 'WAIT_TIME'
 $.KEY_GUMING_WX_USER = 'GUMING_WX_USER'
 $.KEY_GUMING_ALIPAY_USER = 'GUMING_ALIPAY_USER'
 $.KEY_activityId = 'activityId'
@@ -53,6 +54,7 @@ if (typeof $request !== 'undefined') {
     }
 } else {
     $.VAL_IS_DEBUG = $.getdata($.KEY_IS_DEBUG, 'false')
+    $.VAL_WAIT_TIME = $.getdata($.KEY_WAIT_TIME, 200)
     $.VAL_GUMING_WX_USER = $.getjson($.KEY_GUMING_WX_USER)
     $.VAL_GUMING_ALIPAY_USER = $.getjson($.KEY_GUMING_ALIPAY_USER)
     $.VAL_activityId = $.getdata($.KEY_activityId) || ''
@@ -76,7 +78,7 @@ if (typeof $request !== 'undefined') {
             if (yesUser.indexOf($.VAL_GUMING_ALIPAY_USER) === -1 && await evalUser($.VAL_GUMING_ALIPAY_USER)) {
                 yesUser.push($.VAL_GUMING_ALIPAY_USER)
             }
-            await $.wait(2000)
+            await $.wait($.VAL_WAIT_TIME)
         }
 
     })()
