@@ -11,7 +11,7 @@ hostname=h5.gumingnc.com
 **/
 const $ = new Env('guming');
 
-$.KEY_IS_DEBUG = 'is_debug'
+$.KEY_IS_DEBUG = 'IS_DEBUG'
 $.KEY_GUMING_WX_USER = 'GUMING_WX_USER'
 $.KEY_GUMING_ALIPAY_USER = 'GUMING_ALIPAY_USER'
 $.KEY_activityId = 'activityId'
@@ -70,10 +70,10 @@ if (typeof $request !== 'undefined') {
             if (yesUser.length === 2) {
                 break
             }
-            if (yesUser.indexOf($.VAL_GUMING_WX_USER) !== -1 && await evalUser($.VAL_GUMING_WX_USER)) {
+            if (yesUser.indexOf($.VAL_GUMING_WX_USER) === -1 && await evalUser($.VAL_GUMING_WX_USER)) {
                 yesUser.push($.VAL_GUMING_WX_USER)
             }
-            if (yesUser.indexOf($.VAL_GUMING_ALIPAY_USER) !== -1 && await evalUser($.VAL_GUMING_ALIPAY_USER)) {
+            if (yesUser.indexOf($.VAL_GUMING_ALIPAY_USER) === -1 && await evalUser($.VAL_GUMING_ALIPAY_USER)) {
                 yesUser.push($.VAL_GUMING_ALIPAY_USER)
             }
             await $.wait(200)
@@ -91,6 +91,7 @@ if (typeof $request !== 'undefined') {
 }
 
 function evalUser(user) {
+    $.log(`开始执行${user.channelCode === '20' ? '微信' : '支付宝'}古茗账号`)
     let option = {
         url: $.VAL_IS_DEBUG == 'true' ? `https://blogapi.goku.top/test?code=0&msg=success` : `https://h5.gumingnc.com/newton-buyer/newton/buyer/ump/milk/tea/activity/fcfs`,
         headers: {
@@ -114,11 +115,13 @@ function evalUser(user) {
         body: `{"channelCode":${user.channelCode},"activityId":${$.VAL_activityId},"brandId":${user.brandId},"keyWordAnswer":"${$.VAL_keyWordAnswer}","consumptionInventoryId":${$.VAL_consumptionInventoryId}`
     }
     return $.http.post(option).then(response => {
+        $.log(`${user.channelCode === '20' ? '微信' : '支付宝'}古茗账号抽奖结果：${JSON.stringify(response.body)}`)
+
         let result = response.body
         if (result.code == 0) {
-            $.msg(`${channelCode === '20' ? '微信' : '支付宝'}古茗账号抢券成功`, '', `${channelCode === '20' ? '微信' : '支付宝'}古茗账号抽奖结果：${result.msg}`)
+            $.msg(`${user.channelCode === '20' ? '微信' : '支付宝'}古茗账号抢券成功`, '', `${user.channelCode === '20' ? '微信' : '支付宝'}古茗账号抽奖结果：${result.msg}`)
         } else {
-            $.log(`${channelCode === '20' ? '微信' : '支付宝'}古茗账号抽奖结果：${result.msg}`)
+            $.log(`${user.channelCode === '20' ? '微信' : '支付宝'}古茗账号抽奖结果：${result.msg}`)
         }
         return result.code == 0
     })
