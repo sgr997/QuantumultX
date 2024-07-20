@@ -112,11 +112,11 @@ function evalUser(user) {
             'Accept': `*/*`
         }
     if($.VAL_IS_DEBUG == 'true'){
-        $.log(headers)
+        $.log(JSON.stringify(headers))
     }
     let option = {
         url: $.VAL_IS_DEBUG == 'true' ? `https://blogapi.goku.top/test?code=0&msg=success` : `https://h5.gumingnc.com/newton-buyer/newton/buyer/ump/milk/tea/activity/fcfs`,
-        headers: $.VAL_IS_DEBUG == 'true' ? {}:{
+        headers: $.VAL_IS_DEBUG == 'true' ? {} : {
             'Sec-Fetch-Dest': `empty`,
             'Connection': `keep-alive`,
             'Accept-Encoding': `gzip, deflate, br`,
