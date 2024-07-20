@@ -17,83 +17,75 @@ $.KEY_activityId = 'activityId'
 $.KEY_keyWordAnswer = 'keyWordAnswer'
 $.KEY_consumptionInventoryId = 'consumptionInventoryId'
 
-
-try {
-    $.log('', `🔔 ${$.name}, 开始!`, '')
-    if (typeof $request !== 'undefined') {
-        try {
-            // 获取cookie，token
-            let authorization = $request.headers.Authorization;
-            let cookie = $request.headers.Cookie;
-            let referer = $request.headers.Referer;
-            let userAgent = $request.headers['User-Agent'];
-            let tToken = $request.headers['t-token'];
-            let channelCode = '20'
-            if (userAgent.indexOf('miniProgram/wx') != -1) {
-                channelCode = '20'
-            }
-            if (userAgent.indexOf('AlipayClient') != -1) {
-                channelCode = '60'
-            }
-
-            if (channelCode === '20') {
-                // 微信
-                $.VAL_GUMING_WX_USER = { authorization, cookie, tToken, referer, userAgent, 'channelCode': 20, 'brandId': 1 }
-                $.setjson($.KEY_GUMING_WX_USER, $.VAL_GUMING_WX_USER)
-            } else {
-                // 支付宝
-                $.VAL_GUMING_ALIPAY_USER = { authorization, cookie, tToken, referer, userAgent, 'channelCode': 60, 'brandId': 1 }
-                $.setjson($.KEY_GUMING_ALIPAY_USER, $.VAL_GUMING_ALIPAY_USER)
-            }
-            $.msg(`添加${channelCode === '20' ? '微信' : '支付宝'}古茗账号成功🎉`, '', `请在Quantumult-X中禁用该脚本\n${channelCode === '20' ? $.VAL_GUMING_WX_USER : $.VAL_GUMING_ALIPAY_USER}`)
-        } catch (e) {
-            $.log('', `❌ ${$.name}, 失败! 原因: ${e}!`, '')
-        } finally {
-            $.log('', `🔔 ${$.name}, 结束!`, '');
-            $.done()
+$.log('', `🔔 ${$.name}, 开始!`, '')
+if (typeof $request !== 'undefined') {
+    try {
+        // 获取cookie，token
+        let authorization = $request.headers.Authorization;
+        let cookie = $request.headers.Cookie;
+        let referer = $request.headers.Referer;
+        let userAgent = $request.headers['User-Agent'];
+        let tToken = $request.headers['t-token'];
+        let channelCode = '20'
+        if (userAgent.indexOf('miniProgram/wx') != -1) {
+            channelCode = '20'
         }
-    } else {
-        $.VAL_GUMING_WX_USER = $.getjson($.KEY_GUMING_WX_USER)
-        $.VAL_GUMING_ALIPAY_USER = $.getjson($.KEY_GUMING_ALIPAY_USER)
-        $.VAL_activityId = $.getdata($.KEY_activityId) || ''
-        $.VAL_keyWordAnswer = $.getdata($.KEY_keyWordAnswer) || ''
-        $.VAL_consumptionInventoryId = $.getdata($.KEY_consumptionInventoryId) || 0
-
-        if (!$.VAL_activityId || !$.VAL_keyWordAnswer || !$.VAL_consumptionInventoryId) {
-            $.log('', `❌ ${$.name}, 失败! 原因: 配置缺失!`, '')
-            $.done()
+        if (userAgent.indexOf('AlipayClient') != -1) {
+            channelCode = '60'
         }
 
-        !(async () => {
-            const yesUser = []
-            for (const i = 0; i < 5; i++) {
-                if (yesUser.length === 2) {
-                    break
-                }
-                if (yesUser.indexOf($.VAL_GUMING_WX_USER) !== -1 && await evalUser($.VAL_GUMING_WX_USER)) {
-                    yesUser.push($.VAL_GUMING_WX_USER)
-                }
-                if (yesUser.indexOf($.VAL_GUMING_ALIPAY_USER) !== -1 && await evalUser($.VAL_GUMING_ALIPAY_USER)) {
-                    yesUser.push($.VAL_GUMING_ALIPAY_USER)
-                }
-                await $.wait(200)
-            }
-
-        })()
-            .catch((e) => {
-                $.log('', `❌ ${$.name}, 失败! 原因: ${e}!`, '')
-            })
-            .finally(() => {
-                $.log('', `🔔 ${$.name}, 结束!`, '');
-                $.done();
-            })
-
+        if (channelCode === '20') {
+            // 微信
+            $.VAL_GUMING_WX_USER = { authorization, cookie, tToken, referer, userAgent, 'channelCode': 20, 'brandId': 1 }
+            $.setjson($.VAL_GUMING_WX_USER, $.KEY_GUMING_WX_USER)
+        } else {
+            // 支付宝
+            $.VAL_GUMING_ALIPAY_USER = { authorization, cookie, tToken, referer, userAgent, 'channelCode': 60, 'brandId': 1 }
+            $.setjson($.VAL_GUMING_ALIPAY_USER, $.KEY_GUMING_ALIPAY_USER)
+        }
+        $.msg(`添加${channelCode === '20' ? '微信' : '支付宝'}古茗账号成功🎉`, '', `请在Quantumult-X中禁用该脚本\n${channelCode === '20' ? $.VAL_GUMING_WX_USER : $.VAL_GUMING_ALIPAY_USER}`)
+    } catch (e) {
+        $.log('', `❌ ${$.name}, 失败! 原因: ${e}!`, '')
+    } finally {
+        $.log('', `🔔 ${$.name}, 结束!`, '');
+        $.done()
     }
-} catch (e) {
-    $.log('', `❌ ${$.name}, 失败! 原因: ${e}!`, '')
-} finally {
-    $.log('', `🔔 ${$.name}, 结束!`, '');
-    $.done();
+} else {
+    $.VAL_GUMING_WX_USER = $.getjson($.KEY_GUMING_WX_USER)
+    $.VAL_GUMING_ALIPAY_USER = $.getjson($.KEY_GUMING_ALIPAY_USER)
+    $.VAL_activityId = $.getdata($.KEY_activityId) || ''
+    $.VAL_keyWordAnswer = $.getdata($.KEY_keyWordAnswer) || ''
+    $.VAL_consumptionInventoryId = $.getdata($.KEY_consumptionInventoryId) || 0
+
+    if (!$.VAL_activityId || !$.VAL_keyWordAnswer || !$.VAL_consumptionInventoryId) {
+        $.log('', `❌ ${$.name}, 失败! 原因: 配置缺失!`, '')
+        $.done()
+    }
+
+    !(async () => {
+        const yesUser = []
+        for (const i = 0; i < 5; i++) {
+            if (yesUser.length === 2) {
+                break
+            }
+            if (yesUser.indexOf($.VAL_GUMING_WX_USER) !== -1 && await evalUser($.VAL_GUMING_WX_USER)) {
+                yesUser.push($.VAL_GUMING_WX_USER)
+            }
+            if (yesUser.indexOf($.VAL_GUMING_ALIPAY_USER) !== -1 && await evalUser($.VAL_GUMING_ALIPAY_USER)) {
+                yesUser.push($.VAL_GUMING_ALIPAY_USER)
+            }
+            await $.wait(200)
+        }
+
+    })()
+        .catch((e) => {
+            $.log('', `❌ ${$.name}, 失败! 原因: ${e}!`, '')
+        })
+        .finally(() => {
+            $.log('', `🔔 ${$.name}, 结束!`, '');
+            $.done();
+        })
+
 }
 
 function evalUser(user) {
@@ -117,7 +109,7 @@ function evalUser(user) {
             'Accept-Language': `zh-CN,zh-Hans;q=0.9`,
             'Accept': `*/*`
         },
-        body: `{"channelCode":${user.channelCode},"activityId":${$.VAL_activityId},"brandId":1,"keyWordAnswer":"${$.VAL_keyWordAnswer}","consumptionInventoryId":${$.VAL_consumptionInventoryId}`
+        body: `{"channelCode":${user.channelCode},"activityId":${$.VAL_activityId},"brandId":${user.brandId},"keyWordAnswer":"${$.VAL_keyWordAnswer}","consumptionInventoryId":${$.VAL_consumptionInventoryId}`
     }
     return $.http.post(option).then(response => {
         let result = response.body
