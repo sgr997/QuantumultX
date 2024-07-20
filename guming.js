@@ -65,7 +65,7 @@ if (typeof $request !== 'undefined') {
     }
 
     !(async () => {
-        const yesUser = []
+        let yesUser = []
         for (const i = 0; i < 5; i++) {
             if (yesUser.length === 2) {
                 break
@@ -116,7 +116,6 @@ function evalUser(user) {
     }
     return $.http.post(option).then(response => {
         $.log(`${user.channelCode === '20' ? '微信' : '支付宝'}古茗账号抽奖结果：${JSON.stringify(response.body)}`)
-
         let result = response.body
         if (result.code == 0) {
             $.msg(`${user.channelCode === '20' ? '微信' : '支付宝'}古茗账号抢券成功`, '', `${user.channelCode === '20' ? '微信' : '支付宝'}古茗账号抽奖结果：${result.msg}`)
