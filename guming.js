@@ -19,7 +19,6 @@ $.KEY_activityId = 'activityId'
 $.KEY_keyWordAnswer = 'keyWordAnswer'
 $.KEY_consumptionInventoryId = 'consumptionInventoryId'
 
-$.log('', `🔔 ${$.name}, 开始!`, '')
 if (typeof $request !== 'undefined') {
     try {
         // 获取cookie，token
@@ -94,9 +93,30 @@ if (typeof $request !== 'undefined') {
 
 function evalUser(user) {
     $.log(`开始执行${user.channelCode == '20' ? '微信' : '支付宝'}古茗账号`)
+    const headers = {
+            'Sec-Fetch-Dest': `empty`,
+            'Connection': `keep-alive`,
+            'Accept-Encoding': `gzip, deflate, br`,
+            'Content-Type': `application/json`,
+            'Sec-Fetch-Site': `same-origin`,
+            'Origin': `https://h5.gumingnc.com`,
+            'Cache-Control': `max-age=0`,
+            'User-Agent': `${user.userAgent}`,
+            'Authorization': `${user.authorization}`,
+            'Sec-Fetch-Mode': `cors`,
+            't-token': `${user.tToken}`,
+            'Host': `h5.gumingnc.com`,
+            'Referer': `${user.referer}`,
+            'Cookie': `${user.cookie}`,
+            'Accept-Language': `zh-CN,zh-Hans;q=0.9`,
+            'Accept': `*/*`
+        }
+    if($.VAL_IS_DEBUG == 'true'){
+        $.log(headers)
+    }
     let option = {
         url: $.VAL_IS_DEBUG == 'true' ? `https://blogapi.goku.top/test?code=0&msg=success` : `https://h5.gumingnc.com/newton-buyer/newton/buyer/ump/milk/tea/activity/fcfs`,
-        headers: {
+        headers: $.VAL_IS_DEBUG == 'true' ? {}:{
             'Sec-Fetch-Dest': `empty`,
             'Connection': `keep-alive`,
             'Accept-Encoding': `gzip, deflate, br`,
