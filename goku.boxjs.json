@@ -9,12 +9,14 @@
             "id": "goku_guming",
             "name": "古茗免单",
             "author": "@sgr997",
-            "repo": "",
+            "repo": "https://github.com/sgr997/QuantumultX/blob/main/guming.js",
+            "script": "https://raw.githubusercontent.com/sgr997/QuantumultX/main/guming.js",
             "icons": [
                 "https://raw.githubusercontent.com/sgr997/QuantumultX/main/icon/avator.png",
                 "https://raw.githubusercontent.com/sgr997/QuantumultX/main/icon/avator.png"
             ],
             "keys": [
+                "IS_DEBUG",
                 "GUMING_WX_USER",
                 "GUMING_ALIPAY_USER",
                 "activityId",
@@ -22,6 +24,14 @@
                 "consumptionInventoryId"
             ],
             "settings": [
+                {
+                    "id": "IS_DEBUG",
+                    "name": "调试模式",
+                    "val": "false",
+                    "type": "input",
+                    "autoGrow": true,
+                    "desc": "调试模式"
+                },
                 {
                     "id": "GUMING_WX_USER",
                     "name": "微信账号ck数据",
@@ -40,7 +50,7 @@
                 },
                 {
                     "id": "activityId",
-                    "name": "activityId",
+                    "name": "活动id",
                     "val": "",
                     "type": "input",
                     "autoGrow": true,
@@ -48,7 +58,7 @@
                 },
                 {
                     "id": "keyWordAnswer",
-                    "name": "keyWordAnswer",
+                    "name": "答案",
                     "val": "",
                     "type": "input",
                     "autoGrow": true,
