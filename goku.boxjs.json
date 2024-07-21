@@ -95,6 +95,7 @@
             "keys": [
                 "IS_DEBUG",
                 "WAIT_TIME",
+                "times",
                 "csession1",
                 "csession2",
                 "csession3",
@@ -122,6 +123,13 @@
                     "val": 200,
                     "type": "number",
                     "desc": "没抢到时，循环等待时间"
+                },
+                {
+                    "id": "times",
+                    "name": "循环次数",
+                    "val": 10,
+                    "type": "number",
+                    "desc": "循环次数"
                 },
                 {
                     "id": "csession1",
@@ -211,6 +219,38 @@
                     "val": "",
                     "type": "input",
                     "desc": ""
+                }
+            ]
+        },
+        {
+            "id": "template",
+            "name": "模板",
+            "author": "@sgr997",
+            "repo": "https://github.com/sgr997/QuantumultX/blob/main/template.js",
+            "script": "https://raw.githubusercontent.com/sgr997/QuantumultX/main/template.js",
+            "icons": [
+                "https://raw.githubusercontent.com/sgr997/QuantumultX/main/icon/avator.png",
+                "https://raw.githubusercontent.com/sgr997/QuantumultX/main/icon/avator.png"
+            ],
+            "keys": [
+                "IS_DEBUG",
+                "WAIT_TIME"
+            ],
+            "settings": [
+                {
+                    "id": "IS_DEBUG",
+                    "name": "调试模式",
+                    "val": "false",
+                    "type": "input",
+                    "autoGrow": true,
+                    "desc": "调试模式"
+                },
+                {
+                    "id": "WAIT_TIME",
+                    "name": "循环等待时间",
+                    "val": 200,
+                    "type": "number",
+                    "desc": "没抢到时，循环等待时间"
                 }
             ]
         }
