@@ -81,6 +81,114 @@
                     "desc": ""
                 }
             ]
+        },
+        {
+            "id": "goku_cbd",
+            "name": "茶百道免单",
+            "author": "@sgr997",
+            "repo": "https://github.com/sgr997/QuantumultX/blob/main/cbd.js",
+            "script": "https://raw.githubusercontent.com/sgr997/QuantumultX/main/cbd.js",
+            "icons": [
+                "https://raw.githubusercontent.com/sgr997/QuantumultX/main/icon/avator.png",
+                "https://raw.githubusercontent.com/sgr997/QuantumultX/main/icon/avator.png"
+            ],
+            "keys": [
+                "csession1",
+                "csession2",
+                "csession3",
+                "csession4",
+                "csession5",
+                "id",
+                "businessId",
+                "activetype",
+                "password",
+                "activityJoinSource",
+                "shopId"
+            ],
+            "settings": [
+                {
+                    "id": "csession1",
+                    "name": "账号1",
+                    "val": "false",
+                    "type": "input",
+                    "autoGrow": true,
+                    "desc": "账号"
+                },
+                {
+                    "id": "csession2",
+                    "name": "账号1",
+                    "val": "false",
+                    "type": "input",
+                    "autoGrow": true,
+                    "desc": "账号"
+                },
+                {
+                    "id": "csession3",
+                    "name": "账号1",
+                    "val": "false",
+                    "type": "input",
+                    "autoGrow": true,
+                    "desc": "账号"
+                },
+                {
+                    "id": "csession4",
+                    "name": "账号1",
+                    "val": "false",
+                    "type": "input",
+                    "autoGrow": true,
+                    "desc": "账号"
+                },
+                {
+                    "id": "csession5",
+                    "name": "账号1",
+                    "val": "false",
+                    "type": "input",
+                    "autoGrow": true,
+                    "desc": "账号"
+                },
+                {
+                    "id": "id",
+                    "name": "id",
+                    "val": "",
+                    "type": "input",
+                    "desc": ""
+                },
+                {
+                    "id": "businessId",
+                    "name": "businessId",
+                    "val": "",
+                    "type": "input",
+                    "desc": ""
+                },
+                {
+                    "id": "activetype",
+                    "name": "activetype",
+                    "val": 4,
+                    "type": "number",
+                    "desc": ""
+                },
+                {
+                    "id": "password",
+                    "name": "password",
+                    "val": "",
+                    "type": "input",
+                    "desc": ""
+                },
+                {
+                    "id": "activityJoinSource",
+                    "name": "activityJoinSource",
+                    "val": 0,
+                    "type": "number",
+                    "desc": ""
+                },
+                {
+                    "id": "shopId",
+                    "name": "shopId",
+                    "val": -1,
+                    "type": "number",
+                    "desc": ""
+                }
+            ]
         }
     ]
 }
