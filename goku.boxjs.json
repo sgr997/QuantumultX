@@ -109,39 +109,39 @@
                 {
                     "id": "csession1",
                     "name": "账号1",
-                    "val": "false",
+                    "val": "",
                     "type": "input",
                     "autoGrow": true,
                     "desc": "账号"
                 },
                 {
                     "id": "csession2",
-                    "name": "账号1",
-                    "val": "false",
+                    "name": "账号2",
+                    "val": "",
                     "type": "input",
                     "autoGrow": true,
                     "desc": "账号"
                 },
                 {
                     "id": "csession3",
-                    "name": "账号1",
-                    "val": "false",
+                    "name": "账号3",
+                    "val": "",
                     "type": "input",
                     "autoGrow": true,
                     "desc": "账号"
                 },
                 {
                     "id": "csession4",
-                    "name": "账号1",
-                    "val": "false",
+                    "name": "账号4",
+                    "val": "",
                     "type": "input",
                     "autoGrow": true,
                     "desc": "账号"
                 },
                 {
                     "id": "csession5",
-                    "name": "账号1",
-                    "val": "false",
+                    "name": "账号5",
+                    "val": "",
                     "type": "input",
                     "autoGrow": true,
                     "desc": "账号"
