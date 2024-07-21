@@ -19,6 +19,9 @@ $.KEY_password = 'password'
 $.KEY_activityJoinSource = 'activityJoinSource'
 $.KEY_shopId = 'shopId'
 $.KEY_referer = 'referer'
+$.KEY_IS_DEBUG = 'IS_DEBUG'
+$.KEY_WAIT_TIME = 'WAIT_TIME'
+
 
 const csessions = []
 csessions.push($.getdata($.KEY_csession1, ''))
@@ -26,56 +29,70 @@ csessions.push($.getdata($.KEY_csession2, ''))
 csessions.push($.getdata($.KEY_csession3, ''))
 csessions.push($.getdata($.KEY_csession4, ''))
 csessions.push($.getdata($.KEY_csession5, ''))
-let id = $.getdata($.KEY_id, '')
-let businessId = $.getdata($.KEY_businessId)
-let activetype = $.getdata($.KEY_activetype, 4)
-let password = $.getdata($.KEY_password)
-let activityJoinSource = $.getdata($.KEY_activityJoinSource, 0)
-let shopId = $.getdata($.KEY_shopId, -1)
-let referer = $.getdata($.KEY_referer, 'https://2021002170659332.hybrid.alipay-eco.com/2021002170659332/0.2.2407191037.18/index.html')
+
+$.VAL_WAIT_TIME = $.getdata($.KEY_WAIT_TIME, 200)
+$.VAL_id = $.getdata($.KEY_id, '')
+$.VAL_is_debug = $.getdata($.KEY_IS_DEBUG, 'true')
+$.VAL_businessId = $.getdata($.KEY_businessId)
+$.VAL_activetype = $.getdata($.KEY_activetype, 4)
+$.VAL_password = $.getdata($.KEY_password)
+$.VAL_activityJoinSource = $.getdata($.KEY_activityJoinSource, 0)
+$.VAL_shopId = $.getdata($.KEY_shopId, -1)
+$.VAL_referer = $.getdata($.KEY_referer, 'https://2021002170659332.hybrid.alipay-eco.com/2021002170659332/0.2.2407191037.18/index.html')
 
 
+!(async () => {
+    for (let j = 0; j < 5; j++) {
+        await batchReq(csessions)
+        await $.wait($.VAL_WAIT_TIME)
+    }
+})()
+    .catch((e) => {
+        $.log('', `❌ ${$.name}, 失败! 原因: ${e}!`, '')
+    })
+    .finally(() => {
+        $.log('', `🔔 ${$.name}, 结束!`, '');
+        $.done();
+    })
 
-try {
+
+function batchReq(csessions) {
+    const res = []
     for (let i = 0; i < csessions.length; i++) {
         if (!csessions[i]) {
             continue;
         }
-        const url = `https://md-h5-gateway.shuxinyc.com/marketing/minip/activity/join/password`;
-        const method = `POST`;
-        const headers = {
-            'Accept': `*/*`,
-            'Connection': `keep-alive`,
-            'Accept-Encoding': `gzip`,
-            'csession': `${csessions[i]}`,
-            'Content-Type': `application/json`,
-            'User-Agent': `Mozilla/5.0 (iPhone; CPU iPhone OS 16_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/20F66 ChannelId(46) Ariver/1.1.0 AliApp(AP/10.6.0.6500) Nebula WK RVKType(0) AlipayDefined(nt:WIFI,ws:428|862|3.0) AlipayClient/10.6.0.6500 Language/zh-Hans Region/CN NebulaX/1.0.0 XRiver/10.2.58.1 DTN/2.0`,
-            'versionname': `3.3.320`,
-            'Cookie': ``,
-            'versioncode': `33320`,
-            'Referer': `${referer}`,
-            'Host': `md-h5-gateway.shuxinyc.com`,
-            'Accept-Charset': `utf-8`
-        };
-        const body = `{"id":${id},"businessId":${businessId},"activetype":${activetype},"password":${password},"activityJoinSource":${activityJoinSource},"shopId":${shopId}}`;
-
-        const myRequest = {
-            url: url,
-            method: method,
-            headers: headers,
-            body: body
-        };
-
-        $task.fetch(myRequest).then(response => {
-            console.log(response.statusCode + "\n\n" + response.body);
-        }, reason => {
-            console.log(reason.error);
-        });
+        res.push(request(csessions[i], i + 1))
     }
-} catch (e) {
-    console.log(`异常：${e}`);
-} finally {
-    $.done()
+    return Promise.all(res)
+}
+
+function request(session, num) {
+    const headers = {
+        'Accept': `*/*`,
+        'Connection': `keep-alive`,
+        'Accept-Encoding': `gzip`,
+        'csession': `${session}`,
+        'Content-Type': `application/json`,
+        'User-Agent': `Mozilla/5.0 (iPhone; CPU iPhone OS 16_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/20F66 ChannelId(46) Ariver/1.1.0 AliApp(AP/10.6.0.6500) Nebula WK RVKType(0) AlipayDefined(nt:WIFI,ws:428|862|3.0) AlipayClient/10.6.0.6500 Language/zh-Hans Region/CN NebulaX/1.0.0 XRiver/10.2.58.1 DTN/2.0`,
+        'versionname': `3.3.320`,
+        'Cookie': ``,
+        'versioncode': `33320`,
+        'Referer': `${$.VAL_referer}`,
+        'Host': `md-h5-gateway.shuxinyc.com`,
+        'Accept-Charset': `utf-8`
+    };
+    const body = `{"id":${$.VAL_id},"businessId":${$.VAL_businessId},"activetype":${$.VAL_activetype},"password":${$.VAL_password},"activityJoinSource":${$.VAL_activityJoinSource},"shopId":${$.VAL_shopId}}`;
+    let option = {
+        url: $.VAL_is_debug == 'true' ? `https://blogapi.goku.top/test?code=0&msg=success` : `https://md-h5-gateway.shuxinyc.com/marketing/minip/activity/join/password`,
+        headers: $.VAL_is_debug == 'true' ? {} : headers,
+        body: body
+    }
+    return $.http.post(option).then(response => {
+        let result = JSON.parse(response.body)
+        $.log(`账号${num}结果, ${result.code}, ${result.msg}`)
+        return result
+    })
 }
 
 
