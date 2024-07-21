@@ -73,7 +73,7 @@ try {
         });
     }
 } catch (e) {
-
+    console.log(`异常：${e}`);
 } finally {
     $.done()
 }
