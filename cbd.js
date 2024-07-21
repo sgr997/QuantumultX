@@ -38,6 +38,9 @@ let referer = $.getdata($.KEY_referer, 'https://2021002170659332.hybrid.alipay-e
 
 try {
     for (let i = 0; i < csessions.length; i++) {
+        if (!csessions[i]) {
+            continue;
+        }
         const url = `https://md-h5-gateway.shuxinyc.com/marketing/minip/activity/join/password`;
         const method = `POST`;
         const headers = {
