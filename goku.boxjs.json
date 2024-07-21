@@ -187,6 +187,13 @@
                     "val": -1,
                     "type": "number",
                     "desc": ""
+                },
+                {
+                    "id": "referer",
+                    "name": "referer",
+                    "val": "",
+                    "type": "input",
+                    "desc": ""
                 }
             ]
         }

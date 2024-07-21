@@ -18,6 +18,7 @@ $.KEY_activetype = 'activetype'
 $.KEY_password = 'password'
 $.KEY_activityJoinSource = 'activityJoinSource'
 $.KEY_shopId = 'shopId'
+$.KEY_referer = 'referer'
 
 const csessions = []
 csessions.push($.getdata($.KEY_csession1, ''))
@@ -31,6 +32,8 @@ let activetype = $.getdata($.KEY_activetype, 4)
 let password = $.getdata($.KEY_password)
 let activityJoinSource = $.getdata($.KEY_activityJoinSource, 0)
 let shopId = $.getdata($.KEY_shopId, -1)
+let referer = $.getdata($.KEY_referer, 'https://2021002170659332.hybrid.alipay-eco.com/2021002170659332/0.2.2407191037.18/index.html')
+
 
 
 try {
@@ -41,13 +44,13 @@ try {
             'Accept': `*/*`,
             'Connection': `keep-alive`,
             'Accept-Encoding': `gzip`,
-            'csession': `1721530255|WcPOCItcJ67ZdmTf.auZYukdtHQjZCQJruhke4vUu4NKGD6F+dax5rMnYJB8S6FFm1FlDHJ4nRq2lOp7Hr9MxhY9ocJKld+07dsgKPA==.9646d7ac83b31692`,
+            'csession': `${csessions[i]}`,
             'Content-Type': `application/json`,
             'User-Agent': `Mozilla/5.0 (iPhone; CPU iPhone OS 16_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/20F66 ChannelId(46) Ariver/1.1.0 AliApp(AP/10.6.0.6500) Nebula WK RVKType(0) AlipayDefined(nt:WIFI,ws:428|862|3.0) AlipayClient/10.6.0.6500 Language/zh-Hans Region/CN NebulaX/1.0.0 XRiver/10.2.58.1 DTN/2.0`,
             'versionname': `3.3.320`,
             'Cookie': ``,
             'versioncode': `33320`,
-            'Referer': `https://2021002170659332.hybrid.alipay-eco.com/2021002170659332/0.2.2407191037.18/index.html`,
+            'Referer': `${referer}`,
             'Host': `md-h5-gateway.shuxinyc.com`,
             'Accept-Charset': `utf-8`
         };
