@@ -82,7 +82,7 @@ function request(session, num) {
         'Host': `md-h5-gateway.shuxinyc.com`,
         'Accept-Charset': `utf-8`
     };
-    const body = `{"id":${$.VAL_id},"businessId":${$.VAL_businessId},"activetype":${$.VAL_activetype},"password":${$.VAL_password},"activityJoinSource":${$.VAL_activityJoinSource},"shopId":${$.VAL_shopId}}`;
+    const body = `{"id":"${$.VAL_id}","businessId":"${$.VAL_businessId}","activetype":${$.VAL_activetype},"password":"${$.VAL_password}","activityJoinSource":${$.VAL_activityJoinSource},"shopId":${$.VAL_shopId}}`;
     let option = {
         url: $.VAL_is_debug == 'true' ? `https://blogapi.goku.top/test?code=0&msg=success` : `https://md-h5-gateway.shuxinyc.com/marketing/minip/activity/join/password`,
         headers: $.VAL_is_debug == 'true' ? {} : headers,
