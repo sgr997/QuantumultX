@@ -92,8 +92,8 @@ function request(session, num) {
         body: body
     }
     return $.http.post(option).then(response => {
-        let result = JSON.parse(response.body)
-        $.log(`账号${num}结果, ${result.code}, ${result.msg}`)
+        let result = response.body
+        $.log(`账号${num}结果, ${result}`)
         return result
     })
 }
