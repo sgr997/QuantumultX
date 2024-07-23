@@ -78,9 +78,9 @@ function request(session, num) {
         'csession': `${session}`,
         'Content-Type': `application/json`,
         'User-Agent': `Mozilla/5.0 (iPhone; CPU iPhone OS 16_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/20F66 ChannelId(46) Ariver/1.1.0 AliApp(AP/10.6.0.6500) Nebula WK RVKType(0) AlipayDefined(nt:WIFI,ws:428|862|3.0) AlipayClient/10.6.0.6500 Language/zh-Hans Region/CN NebulaX/1.0.0 XRiver/10.2.58.1 DTN/2.0`,
-        'versionname': `3.3.320`,
+        'versionname': `3.3.322`,
         'Cookie': ``,
-        'versioncode': `33320`,
+        'versioncode': `33322`,
         'Referer': `${$.VAL_referer}`,
         'Host': `md-h5-gateway.shuxinyc.com`,
         'Accept-Charset': `utf-8`
