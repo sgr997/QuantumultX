@@ -55,8 +55,8 @@ if (typeof $request !== 'undefined') {
     }
 } else {
     $.VAL_IS_DEBUG = $.getdata($.KEY_IS_DEBUG, 'false')
-    $.VAL_GM_TIMES = $.getdata($.KEY_GM_TIMES, 1000)
-    $.VAL_WAIT_TIME = $.getdata($.KEY_WAIT_TIME, 200)
+    $.VAL_GM_TIMES = $.getdata($.KEY_GM_TIMES, 1)
+    $.VAL_WAIT_TIME = $.getdata($.KEY_WAIT_TIME, 500)
     $.VAL_GUMING_WX_USER = $.getjson($.KEY_GUMING_WX_USER)
     $.VAL_GUMING_ALIPAY_USER = $.getjson($.KEY_GUMING_ALIPAY_USER)
     $.VAL_activityId = $.getdata($.KEY_activityId) || ''
