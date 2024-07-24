@@ -123,7 +123,7 @@ function evalUser(user) {
         body: `{"channelCode":${user.channelCode},"activityId":${$.VAL_activityId},"brandId":${user.brandId},"keyWordAnswer":"${$.VAL_keyWordAnswer}","consumptionInventoryId":${$.VAL_consumptionInventoryId}`
     }
     return $.http.post(option).then(response => {
-        return response.body.indexof('恭喜')
+        return response.body.indexOf('恭喜')!==-1
         //let result = JSON.parse(response.body)
         //if (result.code == 0) {
             //$.msg(`${user.channelCode == '20' ? '微信' : '支付宝'}古茗账号抢券成功`, '', `${user.channelCode == '20' ? '微信' : '支付宝'}古茗账号抽奖结果：${result.msg}`)
