@@ -83,9 +83,11 @@ if (typeof $request !== 'undefined') {
             }
             if ($.VAL_GUMING_WX_USER && yesUser.indexOf($.VAL_GUMING_WX_USER) === -1 && await evalUser($.VAL_GUMING_WX_USER)) {
                 yesUser.push($.VAL_GUMING_WX_USER)
+                $.msg(`微信古茗账号完成🎊`, '', `自己去账号看吧`)
             }
             if ($.VAL_GUMING_ALIPAY_USER && yesUser.indexOf($.VAL_GUMING_ALIPAY_USER) === -1 && await evalUser($.VAL_GUMING_ALIPAY_USER)) {
                 yesUser.push($.VAL_GUMING_ALIPAY_USER)
+                $.msg(`支付宝古茗账号完成🎊`, '', `自己去账号看吧`)
             }
             await $.wait($.VAL_WAIT_TIME)
         }
