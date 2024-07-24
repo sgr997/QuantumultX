@@ -13,6 +13,7 @@ hostname=h5.gumingnc.com
 const $ = new Env('guming');
 
 $.KEY_IS_DEBUG = 'IS_DEBUG'
+$.KEY_GM_TIMES = 'GM_TIMES'
 $.KEY_WAIT_TIME = 'WAIT_TIME'
 $.KEY_GUMING_WX_USER = 'GUMING_WX_USER'
 $.KEY_GUMING_ALIPAY_USER = 'GUMING_ALIPAY_USER'
@@ -54,6 +55,7 @@ if (typeof $request !== 'undefined') {
     }
 } else {
     $.VAL_IS_DEBUG = $.getdata($.KEY_IS_DEBUG, 'false')
+    $.VAL_GM_TIMES = $.getdata($.KEY_GM_TIMES, 1000)
     $.VAL_WAIT_TIME = $.getdata($.KEY_WAIT_TIME, 200)
     $.VAL_GUMING_WX_USER = $.getjson($.KEY_GUMING_WX_USER)
     $.VAL_GUMING_ALIPAY_USER = $.getjson($.KEY_GUMING_ALIPAY_USER)
@@ -68,7 +70,7 @@ if (typeof $request !== 'undefined') {
 
     !(async () => {
         const yesUser = []
-        for (let i = 0; i < 1000; i++) {
+        for (let i = 0; i < $.VAL_GM_TIMES; i++) {
             if (yesUser.length === 2) {
                 break
             }
@@ -121,13 +123,14 @@ function evalUser(user) {
         body: `{"channelCode":${user.channelCode},"activityId":${$.VAL_activityId},"brandId":${user.brandId},"keyWordAnswer":"${$.VAL_keyWordAnswer}","consumptionInventoryId":${$.VAL_consumptionInventoryId}`
     }
     return $.http.post(option).then(response => {
-        let result = JSON.parse(response.body)
-        if (result.code == 0) {
-            $.msg(`${user.channelCode == '20' ? '微信' : '支付宝'}古茗账号抢券成功`, '', `${user.channelCode == '20' ? '微信' : '支付宝'}古茗账号抽奖结果：${result.msg}`)
-        } else {
-            $.log(`${user.channelCode == '20' ? '微信' : '支付宝'}古茗账号抽奖结果：${result.msg}`)
-        }
-        return result.code == 0
+        return response.body.indexof('恭喜')
+        //let result = JSON.parse(response.body)
+        //if (result.code == 0) {
+            //$.msg(`${user.channelCode == '20' ? '微信' : '支付宝'}古茗账号抢券成功`, '', `${user.channelCode == '20' ? '微信' : '支付宝'}古茗账号抽奖结果：${result.msg}`)
+        //} else {
+            //$.log(`${user.channelCode == '20' ? '微信' : '支付宝'}古茗账号抽奖结果：${result.msg}`)
+        //}
+        //return result.code == 0
     })
 }
 
