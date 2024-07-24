@@ -18,6 +18,7 @@
             "keys": [
                 "IS_DEBUG",
                 "WAIT_TIME",
+                "GM_TIMES",
                 "GUMING_WX_USER",
                 "GUMING_ALIPAY_USER",
                 "activityId",
@@ -32,6 +33,14 @@
                     "type": "input",
                     "autoGrow": true,
                     "desc": "调试模式"
+                },
+                {
+                    "id": "GM_TIMES",
+                    "name": "循环次数",
+                    "val": 1000,
+                    "type": "number",
+                    "autoGrow": true,
+                    "desc": "循环次数"
                 },
                 {
                     "id": "WAIT_TIME",
