@@ -120,7 +120,7 @@ function evalUser(user) {
     let option = {
         url: $.VAL_IS_DEBUG == 'true' ? `https://blogapi.goku.top/test?code=0&msg=success` : `https://h5.gumingnc.com/newton-buyer/newton/buyer/ump/milk/tea/activity/fcfs`,
         headers: $.VAL_IS_DEBUG == 'true' ? {} : headers,
-        body: `{"channelCode":${user.channelCode},"activityId":${$.VAL_activityId},"brandId":${user.brandId},"keyWordAnswer":"${$.VAL_keyWordAnswer}","consumptionInventoryId":${$.VAL_consumptionInventoryId}`
+        body: `{"channelCode":${user.channelCode},"activityId":${$.VAL_activityId},"brandId":${user.brandId},"keyWordAnswer":"${$.VAL_keyWordAnswer}","consumptionInventoryId":${$.VAL_consumptionInventoryId}}`
     }
     return $.http.post(option).then(response => {
         $.log(`${response.body}`)
