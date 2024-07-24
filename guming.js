@@ -68,7 +68,7 @@ if (typeof $request !== 'undefined') {
 
     !(async () => {
         const yesUser = []
-        for (let i = 0; i < 5; i++) {
+        for (let i = 0; i < 1000; i++) {
             if (yesUser.length === 2) {
                 break
             }
