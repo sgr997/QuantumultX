@@ -123,7 +123,7 @@ function evalUser(user) {
         body: `{"channelCode":${user.channelCode},"activityId":${$.VAL_activityId},"brandId":${user.brandId},"keyWordAnswer":"${$.VAL_keyWordAnswer}","consumptionInventoryId":${$.VAL_consumptionInventoryId}`
     }
     return $.http.post(option).then(response => {
-        $.log(`${respone.body}`)
+        $.log(`${response.body}`)
         return response.body.indexOf('恭喜')!==-1
         //let result = JSON.parse(response.body)
         //if (result.code == 0) {
