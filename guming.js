@@ -70,14 +70,21 @@ if (typeof $request !== 'undefined') {
 
     !(async () => {
         const yesUser = []
+        let ca = 0
+        if ($.VAL_GUMING_WX_USER){
+            ca = ca + 1
+        }
+        if ($.VAL_GUMING_ALIPAY_USER){
+            ca = ca + 1
+        }
         for (let i = 0; i < $.VAL_GM_TIMES; i++) {
-            if (yesUser.length === 2) {
+            if (yesUser.length === ca) {
                 break
             }
-            if (yesUser.indexOf($.VAL_GUMING_WX_USER) === -1 && await evalUser($.VAL_GUMING_WX_USER)) {
+            if ($.VAL_GUMING_WX_USER && yesUser.indexOf($.VAL_GUMING_WX_USER) === -1 && await evalUser($.VAL_GUMING_WX_USER)) {
                 yesUser.push($.VAL_GUMING_WX_USER)
             }
-            if (yesUser.indexOf($.VAL_GUMING_ALIPAY_USER) === -1 && await evalUser($.VAL_GUMING_ALIPAY_USER)) {
+            if ($.VAL_GUMING_ALIPAY_USER && yesUser.indexOf($.VAL_GUMING_ALIPAY_USER) === -1 && await evalUser($.VAL_GUMING_ALIPAY_USER)) {
                 yesUser.push($.VAL_GUMING_ALIPAY_USER)
             }
             await $.wait($.VAL_WAIT_TIME)
@@ -124,7 +131,7 @@ function evalUser(user) {
     }
     return $.http.post(option).then(response => {
         $.log(`${response.body}`)
-        return response.body.indexOf('恭喜')!==-1
+        return response.body.indexOf('参与次数已达上限1次')!==-1
         //let result = JSON.parse(response.body)
         //if (result.code == 0) {
             //$.msg(`${user.channelCode == '20' ? '微信' : '支付宝'}古茗账号抢券成功`, '', `${user.channelCode == '20' ? '微信' : '支付宝'}古茗账号抽奖结果：${result.msg}`)
