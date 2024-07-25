@@ -60,11 +60,11 @@
                 },
                 {
                     "id": "GUMING_WX_USER2",
-                    "name": "微信账号ck数据",
+                    "name": "微信账号ck数据2",
                     "val": "",
                     "type": "textarea",
                     "autoGrow": true,
-                    "desc": "微信账号ck数据"
+                    "desc": "微信账号ck数据2"
                 },
                 {
                     "id": "GUMING_ALIPAY_USER",
