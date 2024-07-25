@@ -20,6 +20,7 @@
                 "WAIT_TIME",
                 "GM_TIMES",
                 "GUMING_WX_USER",
+                 "GUMING_WX_USER2"
                 "GUMING_ALIPAY_USER",
                 "activityId",
                 "keyWordAnswer",
@@ -51,6 +52,14 @@
                 },
                 {
                     "id": "GUMING_WX_USER",
+                    "name": "微信账号ck数据",
+                    "val": "",
+                    "type": "textarea",
+                    "autoGrow": true,
+                    "desc": "微信账号ck数据"
+                },
+                {
+                    "id": "GUMING_WX_USER2",
                     "name": "微信账号ck数据",
                     "val": "",
                     "type": "textarea",
