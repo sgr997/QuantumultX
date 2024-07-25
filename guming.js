@@ -16,6 +16,7 @@ $.KEY_IS_DEBUG = 'IS_DEBUG'
 $.KEY_GM_TIMES = 'GM_TIMES'
 $.KEY_WAIT_TIME = 'WAIT_TIME'
 $.KEY_GUMING_WX_USER = 'GUMING_WX_USER'
+$.KEY_GUMING_WX_USER2 = 'GUMING_WX_USER2'
 $.KEY_GUMING_ALIPAY_USER = 'GUMING_ALIPAY_USER'
 $.KEY_activityId = 'activityId'
 $.KEY_keyWordAnswer = 'keyWordAnswer'
@@ -58,6 +59,7 @@ if (typeof $request !== 'undefined') {
     $.VAL_GM_TIMES = $.getdata($.KEY_GM_TIMES, 1)
     $.VAL_WAIT_TIME = $.getdata($.KEY_WAIT_TIME, 500)
     $.VAL_GUMING_WX_USER = $.getjson($.KEY_GUMING_WX_USER)
+    $.VAL_GUMING_WX_USER2 = $.getjson($.KEY_GUMING_WX_USER2)
     $.VAL_GUMING_ALIPAY_USER = $.getjson($.KEY_GUMING_ALIPAY_USER)
     $.VAL_activityId = $.getdata($.KEY_activityId) || ''
     $.VAL_keyWordAnswer = $.getdata($.KEY_keyWordAnswer) || ''
@@ -77,6 +79,9 @@ if (typeof $request !== 'undefined') {
         if ($.VAL_GUMING_ALIPAY_USER){
             ca = ca + 1
         }
+        if ($.VAL_GUMING_WX_USER2){
+            ca = ca + 1
+        }
         for (let i = 0; i < $.VAL_GM_TIMES; i++) {
             if (yesUser.length === ca) {
                 break
@@ -84,6 +89,10 @@ if (typeof $request !== 'undefined') {
             if ($.VAL_GUMING_WX_USER && yesUser.indexOf($.VAL_GUMING_WX_USER) === -1 && await evalUser($.VAL_GUMING_WX_USER)) {
                 yesUser.push($.VAL_GUMING_WX_USER)
                 $.msg(`微信古茗账号完成🎊`, '', `自己去账号看吧`)
+            }
+            if ($.VAL_GUMING_WX_USER2 && yesUser.indexOf($.VAL_GUMING_WX_USER2) === -1 && await evalUser($.VAL_GUMING_WX_USER2)) {
+                yesUser.push($.VAL_GUMING_WX_USER2)
+                $.msg(`微信2古茗账号完成🎊`, '', `自己去账号看吧`)
             }
             if ($.VAL_GUMING_ALIPAY_USER && yesUser.indexOf($.VAL_GUMING_ALIPAY_USER) === -1 && await evalUser($.VAL_GUMING_ALIPAY_USER)) {
                 yesUser.push($.VAL_GUMING_ALIPAY_USER)
