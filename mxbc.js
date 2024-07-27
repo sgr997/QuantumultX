@@ -1,6 +1,5 @@
 /** 
 [rewrite_local]
-^https?:\/\/mxsa\.mxbc\.net\/api\/v1\/h5\/marketing\/secretword\/confirm url script-request-header https://raw.githubusercontent.com/sgr997/QuantumultX/main/mxbc.js
 ^https?:\/\/mxsa\.mxbc\.net\/api\/v1\/h5\/marketing\/secretword\/confirm url script-request-body https://raw.githubusercontent.com/sgr997/QuantumultX/main/mxbc.js
 
 [task_local]
@@ -13,28 +12,24 @@ hostname=h5.gumingnc.com
 const $ = new Env('mxbc');
 
 !(async () => {
-    const headers = $.getjson('mxbc_headers')
-    $.log('', `${JSON.stringy(headers)}`, '')
     const body = $.getjson('mxbc_body') 
     $.log('', `${JSON.stringy(body)}`, '')
-
-    if (headers && body) {
+    if (body) {
         const flag = $.getdata('mxbc_flag', 'false')
         if (flag == 'true') {
             return;
         }
         $.setdata('true', 'mxbc_flag')
         for (let i = 0; i < 10; i++) {
-            if (await evalReq(headers, body)) {
+            if (await evalReq(body)) {
                 break
             }
         }
     }
-    if ($request.headers !== 'undefined') {
-        $.setjson($request.headers, 'mxbc_headers')
-    }
     if ($request.body !== 'undefined') {
         $.setjson($request.body, 'mxbc_body')
+        $.log('获取body', `${JSON.stringy($request.body)}`, '')
+
     }
     $.log(`成功🎉`, '', `请在Quantumult-X中禁用该脚本`)
 })()
@@ -46,10 +41,24 @@ const $ = new Env('mxbc');
         $.done();
     })
 
-function evalReq(headers, body) {
+function evalReq(body) {
     let option = {
         url: `https://mxsa.mxbc.net/api/v1/h5/marketing/secretword/confirm`,
-        headers: headers,
+        headers: {
+            'Sec-Fetch-Dest': 'empty',
+            'Connection': 'Keep-Alive',
+            'Accept-Encoding': 'gzip',
+            'Content-Type': 'application/json;charset=utf-8',
+            'Sec-Fetch-Site': 'same-site',
+            'Origin': 'https://mxsa-h5.mxbc.net',
+            'User-Agent': 'Mozilla/5.0 (iPhone; CPU iPhone OS 16_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/20F66 Ariver/1.1.0 AliApp(AP/10.6.0.6500) Nebula WK RVKType(1) AlipayDefined(nt:WIFI,ws:428|862|3.0) AlipayClient/10.6.0.6500 Language/zh-Hans Region/CN MiniProgram APXWebView NebulaX/1.0.0 DTN/2.0',
+            'Sec-Fetch-Mode': 'cors',
+            'Access-Token': 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ3eG1pbmlfMTQ0ODk5NDUxODk3MDAyMzkzNyIsImlhdCI6MTcxNjAxODcxN30.2a7H0dMb72eweJjuwofg6f1SknS5miTJGgOyz90-kbXPjcQ3Vx3Us5OKRLFbB3skQpOfOMwAZpTPHilV7QkJLA',
+            'Referer': 'https://mxsa-h5.mxbc.net/',
+            'Cookie': 'UM_distinctid=190f24082031fc-0c1bda7cef25f28-3b4a402c-60c28-190f2408204ec0; acw_tc=ac11000117220512323516211e8af42d6ddec332695b36fe0273f9f7638baf; aliyungf_tc=e715957794f3b49d7af891b94276fe4c2e89ae5e77baf30bab79e08458e39142',
+            'Host': 'mxsa.mxbc.net',
+            'Accept': 'application/json, text/plain, */*'
+          },
         body: body
     }
     return $.http.post(option).then(response => {
