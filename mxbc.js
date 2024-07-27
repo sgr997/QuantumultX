@@ -12,6 +12,10 @@ hostname=h5.gumingnc.com
 const $ = new Env('mxbc');
 
 !(async () => {
+    if ($request.body !== 'undefined') {
+        $.setjson($request.body, 'mxbc_body')
+        $.log('获取body', `${JSON.stringify($request.body)}`, '')
+    }
     const body = $.getjson('mxbc_body') 
     $.log('存储的body', `${JSON.stringify(body)}`, '')
     if (body) {
@@ -26,12 +30,6 @@ const $ = new Env('mxbc');
             }
         }
     }
-    if ($request.body !== 'undefined') {
-        $.setjson($request.body, 'mxbc_body')
-        $.log('获取body', `${JSON.stringify($request.body)}`, '')
-
-    }
-    $.log(`成功🎉`, '', `请在Quantumult-X中禁用该脚本`)
 })()
     .catch((e) => {
         $.log('', `❌ ${$.name}, 失败! 原因: ${e}!`, '')
