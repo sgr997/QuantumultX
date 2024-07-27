@@ -14,9 +14,9 @@ const $ = new Env('mxbc');
 
 !(async () => {
     const headers = $.getjson('mxbc_headers')
-    $.log('', `${headers}`, '')
+    $.log('', `${JSON.stringy(headers)}`, '')
     const body = $.getjson('mxbc_body')
-    $.log('', `${body}`, '')
+    $.log('', `${JSON.stringy(body)}`, '')
 
     if (headers && body) {
         const flag = $.getdata('mxbc_flag', 'false')
