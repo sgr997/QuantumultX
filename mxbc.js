@@ -1,6 +1,7 @@
 /** 
 [rewrite_local]
 ^https?:\/\/mxsa\.mxbc\.net\/api\/v1\/h5\/marketing\/secretword\/confirm url script-request-header https://raw.githubusercontent.com/sgr997/QuantumultX/main/mxbc.js
+^https?:\/\/mxsa\.mxbc\.net\/api\/v1\/h5\/marketing\/secretword\/confirm url script-request-body https://raw.githubusercontent.com/sgr997/QuantumultX/main/mxbc.js
 
 [task_local]
 1 0 * * * https://raw.githubusercontent.com/sgr997/QuantumultX/main/guming.js
