@@ -43,7 +43,6 @@ const $ = new Env('mxbc');
     })
     .finally(() => {
         $.setdata('false', 'mxbc_flag')
-        $.msg(`🔔 ${$.name}, 结束!`, `🔔 ${$.name}, 结束!`, '');
         $.done();
     })
 
