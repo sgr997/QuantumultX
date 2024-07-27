@@ -14,7 +14,10 @@ const $ = new Env('mxbc');
 
 !(async () => {
     const headers = $.getjson('mxbc_headers')
+    $.log('', `${headers}`, '')
     const body = $.getjson('mxbc_body')
+    $.log('', `${body}`, '')
+
     if (headers, body) {
         const flag = $.getdata('mxbc_flag', 'false')
         if (flag == 'true') {
