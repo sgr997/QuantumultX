@@ -13,7 +13,7 @@ const $ = new Env('mxbc');
 
 !(async () => {
     const body = $.getjson('mxbc_body') 
-    $.log('', `${JSON.stringy(body)}`, '')
+    $.log('', `${JSON.stringify(body)}`, '')
     if (body) {
         const flag = $.getdata('mxbc_flag', 'false')
         if (flag == 'true') {
@@ -28,7 +28,7 @@ const $ = new Env('mxbc');
     }
     if ($request.body !== 'undefined') {
         $.setjson($request.body, 'mxbc_body')
-        $.log('获取body', `${JSON.stringy($request.body)}`, '')
+        $.log('获取body', `${JSON.stringify($request.body)}`, '')
 
     }
     $.log(`成功🎉`, '', `请在Quantumult-X中禁用该脚本`)
