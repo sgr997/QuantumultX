@@ -13,7 +13,7 @@ const $ = new Env('mxbc');
 
 !(async () => {
     const body = $.getjson('mxbc_body') 
-    $.log('', `${JSON.stringify(body)}`, '')
+    $.log('存储的body', `${JSON.stringify(body)}`, '')
     if (body) {
         const flag = $.getdata('mxbc_flag', 'false')
         if (flag == 'true') {
