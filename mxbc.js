@@ -18,7 +18,7 @@ const $ = new Env('mxbc');
     const body = $.getjson('mxbc_body')
     $.log('', `${body}`, '')
 
-    if (headers, body) {
+    if (headers && body) {
         const flag = $.getdata('mxbc_flag', 'false')
         if (flag == 'true') {
             return;
