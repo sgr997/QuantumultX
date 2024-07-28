@@ -24,7 +24,7 @@ const $ = new Env('mxbc');
             return;
         }
         $.setdata('true', 'mxbc_flag')
-        for (let i = 0; i < 10; i++) {
+        for (let i = 0; i < 1000; i++) {
             if (await evalReq(body)) {
                 break
             }
@@ -62,6 +62,9 @@ function evalReq(body) {
     }
     return $.http.post(option).then(response => {
         $.log(`蜜雪冰城：${response.body}`)
+        if(!response.body){
+            return false
+        }
         return response.body.indexOf('已抢完') !== -1 || response.body.indexOf('场次未开始或已结束') !== -1
     })
 }
