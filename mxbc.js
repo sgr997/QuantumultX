@@ -28,7 +28,7 @@ const $ = new Env('mxbc');
             if (await evalReq(body)) {
                 break
             }
-            await $.wait(1000)
+            await $.wait(500)
         }
     }
 })()
