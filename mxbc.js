@@ -75,7 +75,7 @@ function evalReq(token, sign, now) {
             $.log(`蜜雪冰城：${response.body}`)
             if (response.body) {
                 if (response.body.indexOf('恭喜') !== -1) {
-                    $.msg(`🎉抢到了，去看看吧，请禁用脚本`, ``, ``)
+                    $.msg(`🎉抢到了，去看看吧`, `一天一次，别太贪，禁用脚本吧`, ``)
                     return true
                 }
                 if (response.body.indexOf('Access-Token失效，请重新登录') !== -1) {
@@ -83,7 +83,7 @@ function evalReq(token, sign, now) {
                     return true
                 }
                 if (response.body.indexOf('sign expired') !== -1) {
-                    $.msg(`脚本有bug`, ``, ``)
+                    $.msg(`脚本有bug，可能签名逻辑改了`, ``, ``)
                     return true
                 }
                 if (response.body.indexOf('阻断') !== -1 || response.body.indexOf('安全威胁') !== -1) {
