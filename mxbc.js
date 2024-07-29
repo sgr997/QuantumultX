@@ -28,10 +28,11 @@ const $ = new Env('mxbc');
         $.mxbc_cc = $.getdata('mxbc_cc', '11:00')
         $.mxbc_word = $.getdata('mxbc_word', '')
         $.mxbc_wait_time = $.getdata('mxbc_wait_time', 500)
-        const param = `marketingId=1816854086004391938&round=${$.mxbc_word}&s=2&secretword=${$.mxbc_word}&stamp=${Date.now()}c274bac6493544b89d9c4f9d8d542b84`
-        const sign = hex_md5(param)
         for (let i = 0; i < $.mxbc_times; i++) {
-            if (await evalReq($.mxbc_token, sign)) {
+            let now = Date.now()
+            let param = `marketingId=1816854086004391938&round=${$.mxbc_word}&s=2&secretword=${$.mxbc_word}&stamp=${now}c274bac6493544b89d9c4f9d8d542b84`
+            let sign = hex_md5(param)
+            if (await evalReq($.mxbc_token, sign, now)) {
                 break
             }
             await $.wait($.mxbc_wait_time)
@@ -46,7 +47,7 @@ const $ = new Env('mxbc');
         $.done();
     })
 
-function evalReq(token, sign) {
+function evalReq(token, sign, now) {
     let option = {
         url: `https://mxsa.mxbc.net/api/v1/h5/marketing/secretword/confirm`,
         headers: {
@@ -64,7 +65,7 @@ function evalReq(token, sign) {
             'Host': 'mxsa.mxbc.net',
             'Accept': 'application/json, text/plain, */*'
         },
-        body: `{"marketingId": "1816854086004391938","round": "${$.mxbc_cc}","secretword": "${$.mxbc_word}","sign": "${sign}","s": 2}`
+        body: `{"marketingId": "1816854086004391938","round": "${$.mxbc_cc}","secretword": "${$.mxbc_word}","sign": "${sign}","s": 2,"stamp": ${now}}`
     }
     if ($.mxbc_isdebug == 'true') {
         $.log(`蜜雪冰城,调试模式：${JSON.stringify(option)}`)
