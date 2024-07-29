@@ -241,6 +241,69 @@
             ]
         },
         {
+            "id": "goku_mxbc",
+            "name": "蜜雪冰城",
+            "author": "@sgr997",
+            "repo": "https://github.com/sgr997/QuantumultX/blob/main/mxbc.js",
+            "script": "https://raw.githubusercontent.com/sgr997/QuantumultX/main/mxbc.js",
+            "icons": [
+                "https://raw.githubusercontent.com/sgr997/QuantumultX/main/icon/avator.png",
+                "https://raw.githubusercontent.com/sgr997/QuantumultX/main/icon/avator.png"
+            ],
+            "keys": [
+                "mxbc_isdebug",
+                "mxbc_times",
+                "mxbc_cc",
+                "mxbc_word",
+                "mxbc_wait_time",
+                "mxbc_token"
+            ],
+            "settings": [
+                {
+                    "id": "mxbc_isdebug",
+                    "name": "mxbc_isdebug",
+                    "val": "false",
+                    "type": "input",
+                    "desc": ""
+                },
+                {
+                    "id": "mxbc_times",
+                    "name": "mxbc_times",
+                    "val": 1,
+                    "type": "number",
+                    "desc": ""
+                },
+                {
+                    "id": "mxbc_cc",
+                    "name": "mxbc_cc",
+                    "val": "11:00",
+                    "type": "input",
+                    "desc": ""
+                },
+                {
+                    "id": "mxbc_word",
+                    "name": "mxbc_word",
+                    "val": "",
+                    "type": "input",
+                    "desc": ""
+                },
+                {
+                    "id": "mxbc_wait_time",
+                    "name": "mxbc_wait_time",
+                    "val": 500,
+                    "type": "number",
+                    "desc": ""
+                },
+                {
+                    "id": "mxbc_token",
+                    "name": "mxbc_token",
+                    "val": "",
+                    "type": "input",
+                    "desc": ""
+                }
+            ]
+        },
+        {
             "id": "template",
             "name": "模板",
             "author": "@sgr997",
