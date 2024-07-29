@@ -30,7 +30,7 @@ const $ = new Env('mxbc');
         $.mxbc_wait_time = $.getdata('mxbc_wait_time', 500)
         for (let i = 0; i < $.mxbc_times; i++) {
             let now = Date.now()
-            let param = `marketingId=1816854086004391938&round=${$.mxbc_word}&s=2&secretword=${$.mxbc_word}&stamp=${now}c274bac6493544b89d9c4f9d8d542b84`
+            let param = `marketingId=1816854086004391938&round=${$.mxbc_cc}&s=2&secretword=${$.mxbc_word}&stamp=${now}c274bac6493544b89d9c4f9d8d542b84`
             let sign = hex_md5(param)
             if (await evalReq($.mxbc_token, sign, now)) {
                 break
