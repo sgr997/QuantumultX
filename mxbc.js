@@ -13,7 +13,7 @@ hostname=h5.gumingnc.com
 const $ = new Env('mxbc');
 
 !(async () => {
-    if ($request !== 'undefined') {
+    if (typeof $request !== 'undefined') {
         const token = $request.headers['Access-Token']
         $.setjson(token, 'mxbc_token')
         $.msg('获取token成功，请禁用重写脚本', `${token}`, '')
