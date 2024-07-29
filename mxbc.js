@@ -16,7 +16,7 @@ const $ = new Env('mxbc');
     if (typeof $request !== 'undefined') {
         const token = $request.headers['Access-Token']
         $.setdata(token, 'mxbc_token')
-        $.msg('获取token成功，请禁用重写脚本', `${token}`, '')
+        $.msg('🎉获取token成功，请禁用重写脚本', `${token}`, '')
     } else {
         $.mxbc_token = $.getdata('mxbc_token', '')
         if (!$.mxbc_token) {
@@ -74,6 +74,10 @@ function evalReq(token, sign, now) {
         return $.http.post(option).then(response => {
             $.log(`蜜雪冰城：${response.body}`)
             if (response.body) {
+                if (response.body.indexOf('恭喜') !== -1) {
+                    $.msg(`🎉抢到了，去看看吧，请禁用脚本`, ``, ``)
+                    return true
+                }
                 if (response.body.indexOf('Access-Token失效，请重新登录') !== -1) {
                     $.msg(`token过期，请重新获取`, ``, ``)
                     return true
