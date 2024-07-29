@@ -15,7 +15,7 @@ const $ = new Env('mxbc');
 !(async () => {
     if (typeof $request !== 'undefined') {
         const token = $request.headers['Access-Token']
-        $.setjson(token, 'mxbc_token')
+        $.setdata(token, 'mxbc_token')
         $.msg('获取token成功，请禁用重写脚本', `${token}`, '')
     } else {
         $.mxbc_token = $.getdata('mxbc_token', '')
@@ -74,12 +74,19 @@ function evalReq(token, sign, now) {
         return $.http.post(option).then(response => {
             $.log(`蜜雪冰城：${response.body}`)
             if (response.body) {
+                if (response.body.indexOf('Access-Token失效，请重新登录') !== -1) {
+                    $.msg(`token过期，请重新获取`, ``, ``)
+                    return true
+                }
+                if (response.body.indexOf('sign expired') !== -1) {
+                    $.msg(`脚本有bug`, ``, ``)
+                    return true
+                }
                 if (response.body.indexOf('阻断') !== -1 || response.body.indexOf('安全威胁') !== -1) {
                     $.msg(`检测到访问被阻断，终止本时间段的访问`, ``, ``)
                     return true
-                } else {
-                    return response.body.indexOf('已抢完') !== -1 || response.body.indexOf('场次未开始或已结束') !== -1
                 }
+                return response.body.indexOf('已抢完') !== -1 || response.body.indexOf('场次未开始或已结束') !== -1
             } else {
                 return false
             }
