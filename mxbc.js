@@ -15,8 +15,10 @@ const $ = new Env('mxbc');
 !(async () => {
     if (typeof $request !== 'undefined') {
         const token = $request.headers['Access-Token']
-        $.setdata(token, 'mxbc_token')
-        $.msg('🎉获取token成功，请禁用重写脚本', `${token}`, '')
+        if(token){
+            $.setdata(token, 'mxbc_token')
+            $.msg('🎉获取token成功，请禁用重写脚本', `${token}`, '')
+        }
     } else {
         $.mxbc_token = $.getdata('mxbc_token', '')
         if (!$.mxbc_token) {
@@ -28,6 +30,7 @@ const $ = new Env('mxbc');
         $.mxbc_cc = $.getdata('mxbc_cc', '11:00')
         $.mxbc_word = $.getdata('mxbc_word', '')
         $.mxbc_wait_time = $.getdata('mxbc_wait_time', 500)
+        let word = await getword()
         for (let i = 0; i < $.mxbc_times; i++) {
             let now = Date.now()
             let param = `marketingId=1816854086004391938&round=${$.mxbc_cc}&s=2&secretword=${$.mxbc_word}&stamp=${now}c274bac6493544b89d9c4f9d8d542b84`
@@ -46,6 +49,46 @@ const $ = new Env('mxbc');
     .finally(() => {
         $.done();
     })
+    
+    
+function getword() {
+let now = Date.now()
+            let param = `marketingId=1816854086004391938&s=2&stamp=${now}c274bac6493544b89d9c4f9d8d542b84`
+            let sign = hex_md5(param)
+    const url = `https://mxsa.mxbc.net/api/v1/h5/marketing/secretword/info?marketingId=1816854086004391938&sign=${sign}&s=2&stamp=${now}`;
+    const method = `GET`;
+    const headers = {
+        'Origin': `https://mxsa-h5.mxbc.net`,
+        'Accept-Encoding': `gzip, deflate, br`,
+        'Connection': `keep-alive`,
+        'Sec-Fetch-Mode': `cors`,
+        'Accept': `application/json, text/plain, */*`,
+        'Host': `mxsa.mxbc.net`,
+        'User-Agent': `Mozilla/5.0 (iPhone; CPU iPhone OS 16_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.5 Mobile/15E148 Safari/604.1`,
+        'Sec-Fetch-Site': `same-site`,
+        'Referer': `https://mxsa-h5.mxbc.net/`,
+        'Sec-Fetch-Dest': `empty`,
+        'Accept-Language': `zh-CN,zh-Hans;q=0.9`
+    };
+    let option = {
+        url: url,
+        headers: headers,
+        body: ``
+    };
+    if ($.mxbc_isdebug == 'true') {
+        $.log(`蜜雪冰城,调试模式：${JSON.stringify(option)}`);
+        return true;
+    } else {
+        return $.http.get(option).then(response => {
+            if (response.body) {
+                let resp = JSON.parse(response.body);
+                $.log(`蜜雪冰城口令：${resp.data.hintWord.replace('本场口令：', '')}`);
+                return resp.data.hintWord.replace('本场口令：', '');
+            }
+            return $.mxbc_word;
+        });
+    }
+}
 
 function evalReq(token, sign, now) {
     let option = {
