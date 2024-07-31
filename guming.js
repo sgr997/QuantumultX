@@ -125,7 +125,7 @@ function evalUser(user) {
             'User-Agent': `${user.userAgent}`,
             'Authorization': `${user.authorization}`,
             'Sec-Fetch-Mode': `cors`,
-            't-token': `${user.tToken}`,
+            //'t-token': `${user.tToken}`,
             'Host': `h5.gumingnc.com`,
             'Referer': `${user.referer}`,
             'Cookie': `${user.cookie}`,
