@@ -8,7 +8,7 @@
 
 [mitm]
 
-hostname=h5.gumingnc.com
+hostname=mxsa.mxbc.net
 **/
 const $ = new Env('mxbc');
 
