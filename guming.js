@@ -1,7 +1,6 @@
 /** 
 [rewrite_local]
 ^https?:\/\/h5\.gumingnc\.com\/newton-buyer\/newton\/buyer\/ump\/autumn\/milk\/tea\/activity\/index url script-request-header https://raw.githubusercontent.com/sgr997/QuantumultX/main/guming.js
-^https?:\/\/h5\.gumingnc\.com\/newton-buyer\/newton\/buyer\/ump\/autumn\/milk\/tea\/activity\/fcfs url script-request-header https://raw.githubusercontent.com/sgr997/QuantumultX/main/guming.js
 
 [task_local]
 1 0 * * * https://raw.githubusercontent.com/sgr997/QuantumultX/main/guming.js
