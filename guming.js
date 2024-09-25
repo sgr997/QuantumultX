@@ -7,7 +7,7 @@
 
 [mitm]
 
-hostname=h5.gumingnc.com
+hostname=h5api.gumingnc.com
 **/
 const $ = new Env('guming');
 
